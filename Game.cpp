@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Board.h"
 #include <stdio.h>
 #include <iostream>
 
@@ -13,8 +14,12 @@ Game::~Game()
 {
 }
 
+/* IN QUESTA FUNZIONE VIENE INIZIALIZZATA LA BOARD CON LA SCELTA TRA GIOCATORE BIANCO E NERO
+ */
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+	Board board = Board();
+	
 	int flags = 0;
 	if(fullscreen){
 		flags = SDL_WINDOW_FULLSCREEN;
@@ -38,6 +43,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
+	board.init_board();
 	SDL_Surface* tmpSurface = IMG_Load("immagini\\150.png");
 	playerText = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 	SDL_FreeSurface(tmpSurface);
